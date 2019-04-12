@@ -20,4 +20,8 @@ public class EmploymentFairService {
         return employmentFairRepository.findByIdEvento(idEvent);
     }
     
+    public EmploymentFair saveEmploymentFair(EmploymentFair employmentFair) {
+        return employmentFairRepository.save(employmentFair);
+    }
+    
 }
