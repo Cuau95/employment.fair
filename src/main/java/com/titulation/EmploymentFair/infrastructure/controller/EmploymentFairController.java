@@ -1,10 +1,10 @@
 package com.titulation.EmploymentFair.infrastructure.controller;
 
 import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 import com.titulation.EmploymentFair.domain.model.EmploymentFair;
 import com.titulation.EmploymentFair.domain.service.EmploymentFairService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -26,8 +26,9 @@ public class EmploymentFairController {
     }
     
     @GetMapping("/id/{id}")
-    public ResponseEntity<List<EmploymentFair>> getEmploymentFair(@PathVariable("id") int idEvento) {
-        return new ResponseEntity<>(employmentFairService.getEmploymentFairs(idEvento), OK);
+    public ResponseEntity<EmploymentFair> getEmploymentFair(@PathVariable("id") int idEvento) {
+        EmploymentFair employmentFair = employmentFairService.getEmploymentFairs(idEvento);
+        return (employmentFair == null) ? new ResponseEntity<>(employmentFair, NOT_FOUND) : new ResponseEntity<>(employmentFair, OK);
     }
     
     @PostMapping()
