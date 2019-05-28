@@ -2,6 +2,7 @@ package com.titulation.EmploymentFair.domain.service;
 
 import com.titulation.EmploymentFair.domain.model.EmploymentFair;
 import com.titulation.EmploymentFair.domain.repository.EmploymentFairRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,10 @@ public class EmploymentFairService {
     
     public EmploymentFair saveEmploymentFair(EmploymentFair employmentFair) {
         return employmentFairRepository.save(employmentFair);
+    }
+    
+    public List<EmploymentFair> getNextEvents() {
+        return (List<EmploymentFair>) employmentFairRepository.findAll();
     }
     
 }
